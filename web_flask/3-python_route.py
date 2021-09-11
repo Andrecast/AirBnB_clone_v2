@@ -32,8 +32,8 @@ def c_is_fun(text):
     return "C {}".format(text.replace("_", " "))
 
 
-@app.route('/python')
-@app.route('/python/<text>')
+@app.route('/python', strict_slashes = False)
+@app.route('/python/<text>', strict_slashes = False)
 def python_is_magic(text='is cool'):
     """
     Return desired string for /python/<text> route, replace '_' with space
