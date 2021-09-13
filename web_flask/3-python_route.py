@@ -2,46 +2,37 @@
 """
 script that starts a Flask web application
 """
-
 from flask import Flask
+
 
 app = Flask(__name__)
 
-# usar un decorador de python, la función route recibe como parámetro la ruta
-# en donde queramos que se corra esta función hello
-# strict_slashes permite que cuando una ruta no tenga una barra (/) al final
-# la pueda redirigir correctamente
 
-
-@app.route('/', strict_slashes = False)
-# crear una función para imprimir Hello HBNB!
+@app.route('/', strict_slashes=False)
 def hello():
     """This function returns Hello HBNB!"""
-    return 'Hello HBNB!'
+    return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes = False)
-def hbnb():
+@app.route("/hbnb", strict_slashes=False)
+def show_string():
     """returns HBNB"""
-    return 'HBNB'
+    return "HBNB"
 
 
-@app.route('/c/<text>', strict_slashes = False)
-def c_is_fun(text):
-    """
-    Return desired string for /c/<text> route, replace '_' with space
-    """
-    return "C {}".format(text.replace("_", " "))
+@app.route("/c/<text>", strict_slashes=False)
+def show_text_replace(text):
+    """ Return desired string for /c/<text> route, replace '_' with space """
+    text_replace = text.replace('_', ' ')
+    return "C {}".format(text_replace)
 
 
-@app.route('/python', strict_slashes = False)
-@app.route('/python/<text>', strict_slashes = False)
-def python_is_magic(text='is cool'):
-    """
-    Return desired string for /python/<text> route, replace '_' with space
-    """
-    return "python {}".format(text.replace("_", " "))
-
+@app.route("/python", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def show_text_default(text="is cool"):
+    """ Return desired string for /python/<text> route, replace '_' with space """
+    text = text.replace('_', ' ')
+    return "Python {}".format(text)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='5000', debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
