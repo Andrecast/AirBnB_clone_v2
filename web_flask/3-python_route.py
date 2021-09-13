@@ -30,9 +30,11 @@ def show_text_replace(text):
 @app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def show_text_default(text="is cool"):
-    """ Return desired string for /python/<text> route, replace '_' with space """
+    """ Return desired string for /python/<text> route
+    replace '_' with space """
     text = text.replace('_', ' ')
     return "Python {}".format(text)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
