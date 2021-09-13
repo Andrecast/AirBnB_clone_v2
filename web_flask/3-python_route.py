@@ -6,27 +6,27 @@ script that starts a Flask web application
 from flask import Flask
 
 app = Flask(__name__)
-# strict_slashes permite que cuando una ruta no tenga una barra (/) al final
-# la pueda redirigir correctamente
-app.strict_slashes = False
+
 # usar un decorador de python, la función route recibe como parámetro la ruta
 # en donde queramos que se corra esta función hello
+# strict_slashes permite que cuando una ruta no tenga una barra (/) al final
+# la pueda redirigir correctamente
 
 
-@app.route('/')
+@app.route('/', strict_slashes = False)
 # crear una función para imprimir Hello HBNB!
 def hello():
     """This function returns Hello HBNB!"""
     return 'Hello HBNB!'
 
 
-@app.route('/hbnb')
+@app.route('/hbnb', strict_slashes = False)
 def hbnb():
     """returns HBNB"""
     return 'HBNB'
 
 
-@app.route('/c/<text>')
+@app.route('/c/<text>', strict_slashes = False)
 def c_is_fun(text):
     """
     Return desired string for /c/<text> route, replace '_' with space
